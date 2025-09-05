@@ -48,7 +48,7 @@ const HeroSection = () => {
           <div className="flex-shrink-0 order-1 lg:order-2">
             <div className="w-72 h-96 lg:w-80 lg:h-96 rounded-2xl overflow-hidden" style={{ boxShadow: 'var(--shadow-image)' }}>
               <img
-                src="/lovable-uploads/d79b05e4-c113-4dc0-827b-b7d998cdbed6.png"
+                src="/images/headshot_outdoor.jpg"
                 alt="Eric Rosenbaum"
                 className="w-full h-full object-cover object-center"
               />
