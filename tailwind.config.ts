@@ -61,6 +61,8 @@ export default {
 					foreground: 'hsl(var(--contact-foreground))'
 				},
 				'project-card': 'hsl(var(--project-card))',
+				'section-a': 'hsl(var(--section-a))',
+				'section-b': 'hsl(var(--section-b))',
 				'hero-text': 'hsl(var(--hero-text))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

@@ -7,18 +7,21 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="py-20 bg-background scroll-mt-24">
+    <section id="home" className="pt-8 pb-16 bg-section-a scroll-mt-24">
       <div id="about" className="h-0" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="flex-1 max-w-2xl order-2 lg:order-1">
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">
               I'm <span className="text-hero-text">Eric Rosenbaum</span>,<br />
-              a <span className="text-hero-text">Data Scientist</span>.
+              a <span className="text-hero-text">Full-Stack Software Engineer</span>.
             </h1>
             
             <p className="text-lg text-muted-foreground mb-2">
-              4+ Years of Academic and Professional Experience in Python and Data Analytics
+              <b>5+ Years of Professional and Academic Experience in Software Development</b>
+            </p>
+            <p className="text-lg text-muted-foreground mb-2">
+              Python · JavaScript · SQL · React · C++
             </p>
             <p className="text-lg text-muted-foreground mb-2">
               Bachelor of Science in Mechanical Engineering
@@ -35,13 +38,15 @@ const HeroSection = () => {
               >
                 My Projects
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              >
-                Resume
-              </Button>
+              <a href="https://github.com/eric-rosenbaum" target="_blank" rel="noopener noreferrer">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                >
+                  GitHub
+                </Button>
+              </a>
             </div>
           </div>
           

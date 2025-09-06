@@ -42,8 +42,11 @@ All colors MUST be HSL.
     --nav-foreground: 0 0% 100%;
     --contact-background: 222.2 84% 4.9%;
     --contact-foreground: 0 0% 100%;
-    --project-card: 171 82% 90%;
+    --project-card: 0 0% 92%;
     --hero-text: 213 78% 35%;
+    /* Alternating section backgrounds */
+    --section-a: 0 0% 98%;
+    --section-b: 0 0% 95%;
     
     /* Shadows and effects */
     --shadow-elegant: 0 10px 25px -5px hsl(213 78% 35% / 0.1), 0 8px 10px -6px hsl(213 78% 35% / 0.1);

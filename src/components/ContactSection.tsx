@@ -1,31 +1,31 @@
-import { Mail, Phone, Linkedin, Twitter, Github } from "lucide-react";
+import { Mail, Phone, Linkedin, Github } from "lucide-react";
 
 const ContactSection = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
       icon: Linkedin,
-      href: "#",
+      href: "https://www.linkedin.com/in/eric-rosenbaum/",
       color: "bg-[#0077B5]"
-    },
-    {
-      name: "Twitter", 
-      icon: Twitter,
-      href: "#",
-      color: "bg-[#1DA1F2]"
     },
     {
       name: "GitHub",
       icon: Github, 
-      href: "#",
+      href: "https://github.com/eric-rosenbaum",
       color: "bg-[#333333]"
+    },
+    {
+      name: "Email",
+      icon: Mail,
+      href: "mailto:ericrosenbaum77@gmail.com",
+      color: "bg-[#EA4335]"
     }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-contact-background text-contact-foreground scroll-mt-24">
+    <section id="contact" className="pt-8 pb-16 bg-contact-background text-contact-foreground scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold mb-16">Contact Me</h2>
+        <h2 className="text-4xl font-bold mb-12">Contact Me</h2>
         
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
           <div className="flex items-center gap-3">
@@ -34,7 +34,7 @@ const ContactSection = () => {
               href="mailto:ericr0senbauM77@gmail.com"
               className="text-lg hover:text-contact-foreground/80 transition-colors duration-200"
             >
-              ericr0senbauM77@gmail.com
+              ericrosenbaum77@gmail.com
             </a>
           </div>
           
@@ -56,6 +56,8 @@ const ContactSection = () => {
               <a
                 key={social.name}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`${social.color} p-4 rounded-lg hover:scale-110 transition-transform duration-200 shadow-lg`}
                 aria-label={social.name}
               >
