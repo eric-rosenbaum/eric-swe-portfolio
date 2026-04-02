@@ -1,0 +1,44 @@
+﻿ERIC ROSENBAUM
+New York, NY | +1 (610) 731-3848 | ericrosenbaum77@gmail.com | linkedin.com/in/eric-rosenbaum | ericrosenbaum.org
+
+
+SUMMARY
+Data-driven Software Engineer with 2+ years of experience working with full-stack and data-driven applications. Experience building reporting software that supports 500+ school districts, as well as launching and monetizing multiple iOS applications. Passionate leveraging Python, Javascript, SQL, and AI integrations to deliver software solutions that…
+
+
+SKILLS
+Programming Languages: Python, JavaScript, TypeScript, SQL (T-SQL, PostgreSQL), Swift, C++, HTML, CSS
+Frameworks & Libraries: React, Node.js, Express, Django, Pandas, NumPy, scikit-learn, TensorFlow, Bootstrap
+Backend, Cloud & DB: Firebase, Supabase, MS SQL Server, MySQL, REST APIs, Vercel
+Developer Tools: Git, GitHub, Linux/Unix, VS Code, Jupyter Notebook
+
+
+EXPERIENCE
+LinkIt!, New York, NY                                                                                               July 2025 – Present
+Solutions Engineer
+* Enhance and scale an existing enterprise codebase using Python, SQL, and SSRS to deliver automated reporting solutions that drive strategic decision-making for K-12 school districts.
+* Design reusable Python applications utilizing pandas, NumPy, pyodbc, and REST APIs to streamline complex data processing workflows, reducing manual intervention time by over 50%.
+* Optimize relational database performance across datasets exceeding 1 million rows by implementing strategic indexing and query tuning, improving execution speeds by 30%.
+ Data Analyst                                                                                                                          July 2024 – July 2025
+* Designed and produced data-driven reports for more than 200 school districts, using SQL (T-SQL) and Python to break down and visualize data to improve student performance and resource allocation.
+* Built light-weight ETL pipelines in Python to automate the transformation of raw test score data, reducing manual processing time by 90%.
+
+
+PROJECTS & ENTREPRENEURSHIP
+Nouriva | Founder & Lead Software Engineer  (App Store Link)
+* Engineered and launched a full-stack iOS application using Swift, Node.js, and Firebase to provide AI-driven nutritional tracking, focusing on nutrients, food quality, and energy, rather than traditional calorie tracking
+* Integrated OpenAI, OpenFoodFacts, and USDA APIs to power a robust meal-logging pipeline supporting both photographic and text inputs, along with a custom data validation algorithm
+* Executed a go-to-market strategy leveraging social media marketing, successfully acquiring 100+ active users and generating over $500 in initial revenue.
+
+
+FriendsFitnessChallenge | Creator and Full-Stack Software Engineer (App Store Link | Web Link | Github)
+* Built a cross-platform mobile application and web client using TypeScript, Swift, Node.js, and Supabase to facilitate weekly group fitness competitions.
+* Overcame complex state management hurdles by implementing robust real-time data syncing, ensuring users see immediate, accurate updates for individual and group cardio/strength progress.
+* Managed end-to-end deployment to the iOS App Store, currently supporting an active base of early-adopter users.
+
+
+EDUCATION
+Tufts University, Medford, MA                                                                                                                 May 2024
+Bachelor of Science in Mechanical Engineering, GPA: 3.83
+Summa cum laude, Dean’s List
+Music Director of Public Harmony, a 400-student music community service group.

@@ -2,122 +2,146 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+:root {
+  --bg:            #f7f8f5;
+  --surface:       #ffffff;
+  --surface-2:     #f0f2ec;
+  --accent:        #1a5c3a;
+  --accent-mid:    #2a7a4f;
+  --accent-light:  #e8f2ec;
+  --accent-muted:  #b8d4c2;
+  --text:          #0f1a14;
+  --muted:         #5a6b62;
+  --border:        rgba(26, 92, 58, 0.12);
+  --border-strong: rgba(26, 92, 58, 0.22);
+  --font-display:  'Outfit', sans-serif;
+  --font-body:     'DM Sans', sans-serif;
+  --font-mono:     'DM Mono', 'Fira Code', monospace;
+}
 
-@layer base {
-  :root {
-    --background: 0 0% 98%;
-    --foreground: 222.2 84% 4.9%;
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
 
-    /* Portfolio brand colors */
-    --primary: 213 78% 35%;
-    --primary-foreground: 0 0% 100%;
-    
-    --secondary: 171 82% 90%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+#root {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-    --accent: 15 86% 60%;
-    --accent-foreground: 0 0% 100%;
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.5); }
+}
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 213 78% 35%;
-    
-    /* Custom portfolio tokens */
-    --nav-background: 222.2 84% 4.9%;
-    --nav-foreground: 0 0% 100%;
-    --contact-background: 222.2 84% 4.9%;
-    --contact-foreground: 0 0% 100%;
-    --project-card: 0 0% 92%;
-    --hero-text: 213 78% 35%;
-    /* Alternating section backgrounds */
-    --section-a: 0 0% 98%;
-    --section-b: 0 0% 95%;
-    
-    /* Shadows and effects */
-    --shadow-elegant: 0 10px 25px -5px hsl(213 78% 35% / 0.1), 0 8px 10px -6px hsl(213 78% 35% / 0.1);
-    --shadow-image: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
-    --radius: 0.5rem;
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    --radius: 0.5rem;
+.section-label {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 8px;
+}
 
-    --sidebar-background: 0 0% 98%;
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin: 0 0 14px;
+  line-height: 1.1;
+}
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+.section-sub {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 0;
+}
 
-    --sidebar-primary: 240 5.9% 10%;
+.section-head {
+  margin-bottom: 52px;
+}
 
-    --sidebar-primary-foreground: 0 0% 98%;
+/* ── Responsive ─────────────────────────────────── */
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+/* Hero: stack photo above text on mobile */
+@media (max-width: 768px) {
+  .hero-layout {
+    flex-direction: column-reverse !important;
+    align-items: center !important;
   }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  .hero-photo {
+    margin-bottom: 8px;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+/* Hero: stack buttons vertically on small screens */
+@media (max-width: 640px) {
+  .hero-buttons {
+    flex-direction: column !important;
   }
+  .hero-buttons > * {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
 
-  body {
-    @apply bg-background text-foreground;
+/* About: single column below 800px */
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+/* Projects: single column below 480px */
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Section padding on mobile */
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 60px 5% !important;
   }
 }
