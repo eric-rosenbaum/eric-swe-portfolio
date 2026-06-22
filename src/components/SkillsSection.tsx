@@ -19,7 +19,16 @@ const skillGroups = [
   },
   {
     label: "AI",
-    items: ["OpenAI APIs", "Cursor", "Retool"],
+    items: [
+      "OpenAI APIs",
+      "Cursor",
+      "Retool",
+      "Claude Code",
+      "Connectors",
+      "Skills",
+      "AI API Integrations",
+      "Prompt Engineering",
+    ],
   },
 ];
 

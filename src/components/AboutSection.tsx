@@ -4,7 +4,7 @@ import { Briefcase, Users, Smartphone } from "lucide-react";
 const stats = [
   { icon: Briefcase, number: "2+", label: "Years Experience" },
   { icon: Users,     number: "1000+", label: "Users" },
-  { icon: Smartphone, number: "2",  label: "Apps Launched" },
+  { icon: Smartphone, number: "5",  label: "Apps Launched With Real Users" },
 ];
 
 const timeline = [
@@ -21,7 +21,7 @@ const timeline = [
   {
     date: "May 2024",
     role: "B.S. Mechanical Engineering",
-    company: "Tufts University · GPA 3.83 · Summa Cum Laude",
+    company: "Tufts University · Summa Cum Laude (Highest Honors)",
   },
 ];
 
@@ -90,10 +90,9 @@ const AboutSection = () => {
               marginBottom: "40px",
             }}
           >
-            I also founded and launched two iOS apps — Nouriva and
-            FriendsFitnessChallenge — from concept to App Store. I hold a B.S.
-            in Mechanical Engineering from Tufts University (GPA 3.83, Summa
-            Cum Laude), and served as Music Director of Public Harmony, a
+            I've founded and launched five apps with real users — across iOS
+            and the web — from concept to production. I hold a B.S.
+            in Mechanical Engineering from Tufts University (Summa Cum Laude), and served as Music Director of Public Harmony, a
             400-student community service group.
           </p>
 

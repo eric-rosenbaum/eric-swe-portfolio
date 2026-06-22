@@ -5,15 +5,17 @@ const projects = [
   {
     id: 1,
     title: "Nouriva",
+    role: "Solo Founder & Developer",
     subtitle: "AI-Driven Nutritional Tracking",
     imageSrc: "/images/nouriva_photo.png",
-    url: "https://apps.apple.com/us/app/nouriva-nutrition-tracker/id6756892907",
+    url: "https://nouriva.app/",
     tags: ["Swift", "Node.js", "Firebase", "OpenAI"],
     gradient: "linear-gradient(135deg, #e0eed8, #cce4d4)",
   },
   {
     id: 2,
     title: "FriendsFitnessChallenge",
+    role: "Solo Founder & Developer",
     subtitle: "Group Fitness Competition Platform",
     imageSrc: "/images/friendsfitness_photo.png",
     url: "https://apps.apple.com/us/app/friendsfitnesschallenge/id6759629305",
@@ -22,19 +24,21 @@ const projects = [
   },
   {
     id: 3,
-    title: "MySetList",
-    subtitle: "Setlist Sharing for Musicians",
-    imageSrc: "/images/mysetlist_photo.jpg",
-    url: "https://mysetlist.org",
+    title: "CampCommand",
+    role: "Co-Founder & Lead Engineer",
+    subtitle: "Camp Operations Management Software",
+    imageSrc: "/images/campcommand_photo.png",
+    url: "https://www.campcommand.app/",
     tags: ["React", "TypeScript", "Node.js"],
     gradient: "linear-gradient(135deg, #e8f2ec, #d0e8d8)",
   },
   {
     id: 4,
-    title: "SavePlanner",
-    subtitle: "Saving and Retirement Tool",
-    imageSrc: "/images/saveplanner_photo.jpg",
-    url: "https://saveplanner.org",
+    title: "Axonome",
+    role: "Software Engineer",
+    subtitle: "Neurodegeneration Resource Platform for Patients and Caregivers",
+    imageSrc: "/images/axonome_photo.png",
+    url: "https://axonome.vercel.app/",
     tags: ["React", "TypeScript", "Firebase"],
     gradient: "linear-gradient(135deg, #ddeee5, #c4ddd0)",
   },
@@ -89,6 +93,7 @@ const ProjectsSection = () => {
 
 const ProjectCard = ({
   title,
+  role,
   subtitle,
   imageSrc,
   url,
@@ -96,6 +101,7 @@ const ProjectCard = ({
   gradient,
 }: {
   title: string;
+  role: string;
   subtitle: string;
   imageSrc: string;
   url: string | null;
@@ -147,6 +153,18 @@ const ProjectCard = ({
 
       {/* Body */}
       <div style={{ padding: "20px" }}>
+        <p
+          style={{
+            fontSize: "10.5px",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            fontWeight: 600,
+            color: "var(--accent)",
+            margin: "0 0 6px",
+          }}
+        >
+          {role}
+        </p>
         <h3
           style={{
             fontFamily: "var(--font-display)",
