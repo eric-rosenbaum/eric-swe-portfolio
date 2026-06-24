@@ -28,6 +28,14 @@ html, body {
   padding: 0;
 }
 
+/* Lock horizontal scroll on mobile */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--text);
