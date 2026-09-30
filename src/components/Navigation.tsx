@@ -1,167 +1,81 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
-const navItems = ["Home", "About", "Projects", "Skills", "Contact"];
+const navItems = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "projects", label: "Work" },
+  { id: "skills", label: "Skills" },
+];
 
 const Navigation = () => {
+  const [active, setActive] = useState("home");
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Highlight the last section whose top has passed the middle of the viewport
+  useEffect(() => {
+    const ids = [...navItems.map((n) => n.id), "contact"];
+    const onScroll = () => {
+      const mid = window.innerHeight * 0.45;
+      let current = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= mid) current = id;
+      }
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const scrollToSection = (id: string) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
 
   return (
-    <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        height: "62px",
-        background: "rgba(247, 248, 245, 0.88)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-        borderBottom: "1px solid var(--border)",
-      }}
-    >
-      <div
-        style={{
-          padding: "0 5%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        {/* Logo */}
+    <>
+      <nav className="nav glass">
         <button
+          className="nav-mono"
           onClick={() => scrollToSection("home")}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "17px",
-            fontWeight: 700,
-            color: "var(--text)",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: 0,
-            display: "flex",
-            alignItems: "center",
-          }}
+          aria-label="Back to top"
         >
-          Eric Rosenbaum
+          ER
         </button>
-
-        {/* Desktop links */}
-        <div className="hidden md:flex" style={{ gap: "4px" }}>
-          {navItems.map((item) => (
-            <NavLink key={item} onClick={() => scrollToSection(item)}>
-              {item}
-            </NavLink>
-          ))}
-        </div>
-
-        {/* Mobile hamburger */}
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            className={`nav-link ${active === item.id ? "active" : ""}`}
+            onClick={() => scrollToSection(item.id)}
+          >
+            {item.label}
+          </button>
+        ))}
+        <button className="nav-cta" onClick={() => scrollToSection("contact")}>
+          Connect
+        </button>
         <button
-          className="md:hidden"
+          className="nav-menu-btn"
           onClick={() => setMobileOpen((o) => !o)}
           aria-label="Toggle menu"
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            color: "var(--muted)",
-            padding: "4px",
-          }}
+          aria-expanded={mobileOpen}
         >
-          <svg
-            width="22"
-            height="22"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.5}
-            strokeLinecap="round"
-          >
-            {mobileOpen ? (
-              <>
-                <line x1="4" y1="4" x2="18" y2="18" />
-                <line x1="18" y1="4" x2="4" y2="18" />
-              </>
-            ) : (
-              <>
-                <line x1="3" y1="7" x2="19" y2="7" />
-                <line x1="3" y1="12" x2="19" y2="12" />
-                <line x1="3" y1="17" x2="19" y2="17" />
-              </>
-            )}
-          </svg>
+          {mobileOpen ? <X size={17} /> : <Menu size={17} />}
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile dropdown */}
       {mobileOpen && (
-        <div
-          style={{
-            background: "var(--surface)",
-            borderTop: "1px solid var(--border)",
-            padding: "8px 5% 16px",
-          }}
-        >
-          {navItems.map((item) => (
-            <button
-              key={item}
-              onClick={() => scrollToSection(item)}
-              style={{
-                display: "block",
-                width: "100%",
-                textAlign: "left",
-                fontFamily: "var(--font-body)",
-                fontSize: "14px",
-                color: "var(--muted)",
-                background: "none",
-                border: "none",
-                borderBottom: "1px solid var(--border)",
-                cursor: "pointer",
-                padding: "12px 0",
-              }}
-            >
-              {item}
+        <div className="nav-sheet glass">
+          {[...navItems, { id: "contact", label: "Contact" }].map((item) => (
+            <button key={item.id} onClick={() => scrollToSection(item.id)}>
+              {item.label}
             </button>
           ))}
         </div>
       )}
-    </nav>
-  );
-};
-
-const NavLink = ({
-  onClick,
-  children,
-}: {
-  onClick: () => void;
-  children: string;
-}) => {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        fontFamily: "var(--font-body)",
-        fontSize: "14px",
-        color: hovered ? "var(--accent)" : "var(--muted)",
-        background: "none",
-        border: "none",
-        cursor: "pointer",
-        padding: "6px 14px",
-        borderRadius: "6px",
-        transition: "color 0.2s",
-      }}
-    >
-      {children}
-    </button>
+    </>
   );
 };
 

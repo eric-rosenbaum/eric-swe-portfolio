@@ -1,342 +1,214 @@
-import { useState } from "react";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, Check, TrendingUp } from "lucide-react";
+import { projects } from "@/data/projects";
+import { prefersReducedMotion, useCountUp } from "@/hooks/use-count-up";
 
-const techStack = ["Python", "JavaScript", "TypeScript", "SQL", "React", "Node.js"];
+// Stagger index for the on-load `.up` animation
+const d = (n: number) => ({ "--d": n }) as React.CSSProperties;
+
+const scrollToSection = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
 
 const HeroSection = () => {
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const apps = useCountUp(5, { delay: 700 });
+  const users = useCountUp(1000, { delay: 700 });
 
   return (
-    <section
-      id="home"
-      style={{
-        minHeight: "100vh",
-        background: "var(--bg)",
-        position: "relative",
-        overflow: "hidden",
-        display: "flex",
-        alignItems: "center",
-        padding: "90px 5% 60px",
-      }}
-    >
-      {/* Mesh blobs */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-60px",
-          right: "-80px",
-          width: "580px",
-          height: "480px",
-          background: "rgba(26, 92, 58, 0.13)",
-          borderRadius: "50%",
-          filter: "blur(90px)",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          top: "30%",
-          right: "10%",
-          width: "400px",
-          height: "380px",
-          background: "rgba(42, 122, 79, 0.09)",
-          borderRadius: "50%",
-          filter: "blur(90px)",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          bottom: "10%",
-          right: "5%",
-          width: "320px",
-          height: "320px",
-          background: "rgba(184, 212, 194, 0.35)",
-          borderRadius: "50%",
-          filter: "blur(90px)",
-          pointerEvents: "none",
-        }}
-      />
+    <section id="home" className="hero">
+      <div className="hero-grid-lines" />
 
-      {/* Main layout */}
-      <div
-        className="hero-layout"
-        style={{
-          position: "relative",
-          zIndex: 1,
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "48px",
-        }}
-      >
-        {/* Content */}
-        <div style={{ flex: 1, minWidth: "280px", maxWidth: "620px" }}>
-          {/* H1 */}
-          <h1
-            className="fade-up"
-            style={{
-              animationDelay: "0ms",
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(50px, 8vw, 84px)",
-              fontWeight: 800,
-              letterSpacing: "-2px",
-              lineHeight: 1.05,
-              color: "var(--text)",
-              margin: "0 0 20px",
-            }}
-          >
-            Hi, I'm{" "}
-            <span style={{ color: "var(--accent)" }}>Eric</span>
-            <br />
-            Rosenbaum.
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            className="fade-up"
-            style={{
-              animationDelay: "120ms",
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(18px, 2.5vw, 22px)",
-              fontWeight: 600,
-              color: "var(--text)",
-              margin: "0 0 14px",
-            }}
-          >
-            Full-Stack Software Engineer
-          </p>
-
-          {/* Description */}
-          <p
-            className="fade-up"
-            style={{
-              animationDelay: "240ms",
-              fontSize: "15px",
-              color: "var(--muted)",
-              lineHeight: 1.8,
-              maxWidth: "520px",
-              margin: "0 0 28px",
-            }}
-          >
-            2+ years building full-stack and data-driven applications.
-            I specialize in Python, JavaScript, SQL, and AI integrations
-            to deliver software solutions that empower people to make data-driven decisions.
-          </p>
-
-          {/* Tech pills */}
-          <div
-            className="fade-up"
-            style={{
-              animationDelay: "360ms",
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "8px",
-              marginBottom: "36px",
-            }}
-          >
-            {techStack.map((tech) => (
-              <TechPill key={tech} label={tech} />
-            ))}
-          </div>
-
-          {/* Buttons */}
-          <div
-            className="fade-up hero-buttons"
-            style={{
-              animationDelay: "480ms",
-              display: "flex",
-              gap: "12px",
-              marginBottom: "32px",
-              flexWrap: "wrap",
-            }}
-          >
-            <PrimaryButton onClick={() => scrollToSection("projects")}>
-              View Projects
-            </PrimaryButton>
-            <OutlineButton onClick={() => scrollToSection("contact")}>
-              Get in Touch
-            </OutlineButton>
-          </div>
-
-          {/* Social icons */}
-          <div
-            className="fade-up"
-            style={{ animationDelay: "600ms", display: "flex", gap: "10px" }}
-          >
-            <SocialIconButton
-              href="https://github.com/eric-rosenbaum"
-              label="GitHub"
-            >
-              <Github size={17} />
-            </SocialIconButton>
-            <SocialIconButton
-              href="https://www.linkedin.com/in/eric-rosenbaum/"
-              label="LinkedIn"
-            >
-              <Linkedin size={17} />
-            </SocialIconButton>
-            <SocialIconButton
-              href="mailto:ericrosenbaum77@gmail.com"
-              label="Email"
-            >
-              <Mail size={17} />
-            </SocialIconButton>
-          </div>
+      <div className="hero-copy">
+        <div className="hero-eyebrow glass up" style={d(0)}>
+          <span className="live-dot" />
+          Full-stack · iOS · AI engineering
         </div>
 
-        {/* Photo */}
-        <div
-          className="fade-up hero-photo"
-          style={{ animationDelay: "240ms", flexShrink: 0 }}
-        >
-          <img
-            src="/images/headshot_outdoor.jpg"
-            alt="Eric Rosenbaum"
-            style={{
-              borderRadius: "16px",
-              width: "clamp(240px, 24vw, 340px)",
-              height: "clamp(310px, 31vw, 440px)",
-              objectFit: "cover",
-              objectPosition: "center top",
-              border: "3px solid var(--accent-light)",
-              boxShadow: "0 8px 32px rgba(26, 92, 58, 0.12)",
-              display: "block",
-            }}
-          />
+        <h1 className="hero-title up" style={d(1)}>
+          Hi, I'm Eric
+          <br />
+          <span className="hero-underline">
+            Rosenbaum.
+            <svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M3 14 C 60 4, 120 4, 170 10 S 260 17, 297 6" />
+            </svg>
+          </span>
+        </h1>
+
+        <p className="hero-role up" style={d(2)}>
+          Full-Stack Software Engineer
+        </p>
+
+        <p className="hero-sub up" style={d(3)}>
+          3+ years building full-stack and data-driven applications. I specialize
+          in Python, JavaScript, SQL, and AI integrations to deliver software
+          solutions that empower people to make data-driven decisions.
+        </p>
+
+        <div className="hero-ctas up" style={d(4)}>
+          <button className="btn btn-dark" onClick={() => scrollToSection("projects")}>
+            See my work <ArrowRight size={17} className="arrow" />
+          </button>
+          <button className="btn btn-light" onClick={() => scrollToSection("contact")}>
+            Get in touch
+          </button>
+        </div>
+
+        <div className="hero-me up" style={d(5)}>
+          <img src="/images/headshot_outdoor.jpg" alt="Eric Rosenbaum" />
+          <div>
+            <strong>Eric Rosenbaum</strong>
+            <span>Tufts ’24</span>
+          </div>
+          <span className="hero-sep" />
+          <div className="hero-kpi">
+            <b>{apps}</b>
+            <span>apps shipped</span>
+          </div>
+          <span className="hero-sep" />
+          <div className="hero-kpi">
+            <b>{users.toLocaleString("en-US")}+</b>
+            <span>real users</span>
+          </div>
         </div>
       </div>
+
+      <ProjectStack />
     </section>
   );
 };
 
-const TechPill = ({ label }: { label: string }) => {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <span
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        padding: "5px 13px",
-        borderRadius: "100px",
-        border: `1px solid ${hovered ? "var(--accent)" : "var(--border-strong)"}`,
-        background: hovered ? "var(--accent-light)" : "var(--surface)",
-        color: hovered ? "var(--accent)" : "var(--muted)",
-        fontSize: "12.5px",
-        transition: "all 0.2s",
-        cursor: "default",
-      }}
-    >
-      {label}
-    </span>
-  );
-};
+/** Auto-cycling 3D stack of project screenshots that tilts with the cursor. */
+const ProjectStack = () => {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const n = projects.length;
 
-const PrimaryButton = ({
-  onClick,
-  children,
-}: {
-  onClick: () => void;
-  children: React.ReactNode;
-}) => {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: hovered ? "#154d30" : "var(--accent)",
-        color: "#fff",
-        border: "none",
-        padding: "11px 24px",
-        borderRadius: "8px",
-        fontFamily: "var(--font-body)",
-        fontSize: "14px",
-        fontWeight: 500,
-        boxShadow: hovered
-          ? "0 4px 20px rgba(26, 92, 58, 0.3)"
-          : "0 2px 12px rgba(26, 92, 58, 0.25)",
-        transform: hovered ? "translateY(-1px)" : "none",
-        transition: "all 0.2s",
-        cursor: "pointer",
-      }}
-    >
-      {children}
-    </button>
-  );
-};
+  // Advance every few seconds; depending on `active` restarts the timer after manual navigation
+  useEffect(() => {
+    if (paused || prefersReducedMotion()) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % n), 3400);
+    return () => clearInterval(id);
+  }, [paused, active, n]);
 
-const OutlineButton = ({
-  onClick,
-  children,
-}: {
-  onClick: () => void;
-  children: React.ReactNode;
-}) => {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: hovered ? "var(--accent-light)" : "var(--surface)",
-        color: hovered ? "var(--accent)" : "var(--text)",
-        border: `1px solid ${hovered ? "var(--accent)" : "var(--border-strong)"}`,
-        padding: "11px 24px",
-        borderRadius: "8px",
-        fontFamily: "var(--font-body)",
-        fontSize: "14px",
-        fontWeight: 500,
-        transition: "all 0.2s",
-        cursor: "pointer",
-      }}
-    >
-      {children}
-    </button>
-  );
-};
+  // Eased tilt toward the pointer, written straight to the DOM to avoid re-renders
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+    const onMove = (e: PointerEvent) => {
+      tx = e.clientX / window.innerWidth - 0.5;
+      ty = e.clientY / window.innerHeight - 0.5;
+    };
+    const loop = () => {
+      cx += (tx - cx) * 0.06;
+      cy += (ty - cy) * 0.06;
+      if (stageRef.current) {
+        stageRef.current.style.transform = `rotateY(${-16 + cx * 18}deg) rotateX(${8 - cy * 12}deg)`;
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    window.addEventListener("pointermove", onMove);
+    raf = requestAnimationFrame(loop);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
 
-export const SocialIconButton = ({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) => {
-  const [hovered, setHovered] = useState(false);
+  const go = (i: number) => setActive((i + n) % n);
+
+  const cardStyle = (i: number): React.CSSProperties => {
+    const off = (i - active + n) % n;
+    if (off === 0) return { transform: "translate3d(0,0,0) scale(1)", opacity: 1, zIndex: n };
+    // The card that just left the front flies out to the side
+    if (off === n - 1) {
+      return {
+        transform: "translate3d(-40%, 30px, 120px) rotateZ(-8deg) scale(.95)",
+        opacity: 0,
+        zIndex: n + 1,
+        pointerEvents: "none",
+      };
+    }
+    return {
+      transform: `translate3d(${off * 7}%, ${-off * 9}%, ${-off * 120}px) rotateZ(${off * 2.2}deg) scale(${1 - off * 0.04})`,
+      opacity: Math.max(1 - off * 0.2, 0),
+      zIndex: n - off,
+      filter: `saturate(${1 - off * 0.25})`,
+    };
+  };
+
+  const current = projects[active];
+
   return (
-    <a
-      href={href}
-      target={href.startsWith("mailto") ? undefined : "_blank"}
-      rel="noopener noreferrer"
-      aria-label={label}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        width: "40px",
-        height: "40px",
-        borderRadius: "8px",
-        border: `1px solid ${hovered ? "var(--accent)" : "var(--border-strong)"}`,
-        background: hovered ? "var(--accent-light)" : "var(--surface)",
-        color: hovered ? "var(--accent)" : "var(--muted)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        transition: "all 0.2s",
-        textDecoration: "none",
-      }}
+    <div
+      className="stage-wrap up"
+      style={d(2)}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      {children}
-    </a>
+      <div className="stage" ref={stageRef} style={{ transform: "rotateY(-16deg) rotateX(8deg)" }}>
+        {projects.map((p, i) => (
+          <article
+            key={p.id}
+            className="stack-card"
+            style={cardStyle(i)}
+            onClick={() =>
+              i === active ? window.open(p.url, "_blank", "noopener,noreferrer") : go(i)
+            }
+            title={i === active ? `Visit ${p.title}` : p.title}
+          >
+            <div className="chrome">
+              <i />
+              <i />
+              <i />
+              <span>{p.domain}</span>
+            </div>
+            <img src={p.imageSrc} alt={p.title} />
+          </article>
+        ))}
+      </div>
+
+      <div className="badge badge-one">
+        <span className="badge-icon"><TrendingUp size={15} /></span>
+        <div>
+          <b>1,000+ users</b>
+          <small>across shipped apps</small>
+        </div>
+      </div>
+      <div className="badge badge-two">
+        <span className="badge-icon"><Check size={15} /></span>
+        <div>
+          <b>Live on the App Store</b>
+          <small>Nouriva · FriendsFitness</small>
+        </div>
+      </div>
+
+      <div className="stack-caption">
+        <div className="stack-cap-text" key={active}>
+          <strong>{current.title}</strong>
+          <span>{current.role}</span>
+        </div>
+        <div className="stack-dots">
+          {projects.map((p, i) => (
+            <button
+              key={p.id}
+              className={i === active ? "on" : ""}
+              onClick={() => go(i)}
+              aria-label={`Show ${p.title}`}
+            />
+          ))}
+        </div>
+        <div className="stack-arrows">
+          <button className="glass" onClick={() => go(active - 1)} aria-label="Previous project">
+            <ArrowLeft size={16} />
+          </button>
+          <button className="glass" onClick={() => go(active + 1)} aria-label="Next project">
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
