@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
 import { prefersReducedMotion, useCountUp } from "@/hooks/use-count-up";
 
@@ -19,11 +19,6 @@ const HeroSection = () => {
       <div className="hero-grid-lines" />
 
       <div className="hero-copy">
-        <div className="hero-eyebrow glass up" style={d(0)}>
-          <span className="live-dot" />
-          Full-stack · iOS · AI engineering
-        </div>
-
         <h1 className="hero-title up" style={d(1)}>
           Hi, I'm Eric
           <br />
@@ -167,21 +162,6 @@ const ProjectStack = () => {
             <img src={p.imageSrc} alt={p.title} />
           </article>
         ))}
-      </div>
-
-      <div className="badge badge-one">
-        <span className="badge-icon"><TrendingUp size={15} /></span>
-        <div>
-          <b>1,000+ users</b>
-          <small>across shipped apps</small>
-        </div>
-      </div>
-      <div className="badge badge-two">
-        <span className="badge-icon"><Check size={15} /></span>
-        <div>
-          <b>Live on the App Store</b>
-          <small>Nouriva · FriendsFitness</small>
-        </div>
       </div>
 
       <div className="stack-caption">
